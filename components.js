@@ -1,1 +1,1 @@
-exports.SimpleMQ = require('./lib/simple-msg-queue.service').SimpleMQ;
+exports.SimpleMQ = require('./lib/simple-mq').SimpleMQ;
