@@ -1,7 +1,7 @@
 {
   "name": "ng2-simple-mq",
   "description": "Angular 2 simple message queue",
-  "version": "0.1.1-alpha",
+  "version": "0.1.2-alpha",
   "license": "MIT",
   "author": {
     "name": "John, Sing Dao, Siu",
