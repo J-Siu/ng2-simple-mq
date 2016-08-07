@@ -24,6 +24,9 @@ export class SimpleMQ {
 		}
 	}
 	publish(name: string, msg: any, lazy = true): boolean {
+		if (msg === undefined) {
+			return false;
+		}
 		if (lazy) {
 			this.newQueue(name);
 		} else if (!this.msgQueues[name]) {
@@ -40,8 +43,5 @@ export class SimpleMQ {
 		}
 		this.msgQueues[name]['o'].subscribe(callback);
 		return true;
-	}
-	log(): void {
-		console.log(this.msgQueues);
 	}
 }
