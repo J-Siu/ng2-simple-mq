@@ -3,8 +3,8 @@ import { Observable, Subject, Subscription } from 'rxjs/Rx';
 
 interface MQ {
 	[name: string]: {
-		s: Subject<any>,
-		o: Observable<any>
+		subject: Subject<any>,
+		observable: Observable<any>
 	};
 }
 
@@ -35,11 +35,11 @@ export class SimpleMQ {
 		}
 		let s = new Subject<any>();
 		let o = s.asObservable();
-		this.mq[name] = { 's': s, 'o': o };
+		this.mq[name] = { subject: s, observable: o };
 		return true;
 	}
 	delQueue(name: string): boolean {
-		if (name === undefined) {
+		if (name === undefined || !this.mq['name']) {
 			return false;
 		}
 		let s = this.getSubscription();
@@ -50,8 +50,8 @@ export class SimpleMQ {
 			}
 		});
 		// delete queue 'name' subject and observable
-		delete this.mq[name].o;
-		delete this.mq[name].s;
+		delete this.mq[name].observable;
+		delete this.mq[name].subject;
 		delete this.mq[name];
 	}
 	publish(name: string, msg: any, lazy = true): boolean {
@@ -63,7 +63,7 @@ export class SimpleMQ {
 		} else if (!this.mq[name]) {
 			return false;
 		}
-		this.mq[name]['s'].next(msg);
+		this.mq[name].subject.next(msg);
 		return true;
 	}
 	subscribe(name: string, callback: (any) => void, lazy = true): string {
@@ -78,12 +78,12 @@ export class SimpleMQ {
 		let id = name + '-' + this.uuid.v1();
 		this.subscription[id] = {
 			name: name,
-			subscription: this.mq[name]['o'].subscribe(callback)
+			subscription: this.mq[name].observable.subscribe(callback)
 		}
 		return id;
 	}
 	unsubscribe(id: string): boolean {
-		if (!id || !this.subscription[id]) {
+		if (id === undefined || !this.subscription[id]) {
 			return false;
 		}
 		this.subscription[id].subscription.unsubscribe();
