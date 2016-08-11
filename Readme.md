@@ -2,6 +2,8 @@
 
 A simple message queue for Angular 2 inter-component communication base on RxJS.
 
+Name/ID(string) base API. RxJS object not exposed.
+
 (This pacakge does not communicate with RabbitMQ or any other message queue software/service.) 
 
 ## Index
@@ -11,18 +13,20 @@ A simple message queue for Angular 2 inter-component communication base on RxJS.
 - [Install](#install)
 - [Usage](#usage)
 	- [Import into Angular 2 application (typescript)](#import-into-angular-2-application-typescript)
-	- [Member Functions](#member-functions)
-		- [newQueue](#newqueuename-string-void)
+	- [API](#api)
+		- [newQueue](#newqueuename-string-boolean)
+		- [delQueue](#delqueuename-string-boolean)
 		- [getQueue](#getqueue-string)
+		- [getSubscription](#getsubscription-string)
 		- [publish](#publishname-string-msg-any-lazy-true-boolean)
-		- [subscribe](#subscribename-string-callback-any-void-lazy-true-boolean)
+		- [subscribe](#subscribename-string-callback-any-void-lazy-true-string)
+		- [unsubscribe](#unsubscribeid-string-boolean)
 - [Example](#example)
 - [Contributors](#contributors)
 - [Changelog](#changelog)
 - [License](#license)
 
 <!-- /TOC -->
-
 ## Install
 
 ```
@@ -60,42 +64,73 @@ For each child component require SimpleMQ, add to constructor.
 constructor(private smq: SimpleMQ) { }
 ```
 
-### Member Functions
+### API
 
-##### newQueue(name: string): void
+##### newQueue(name: string): boolean
 
-newQueue will create queue `name`. Creating queue with the same name multiple times has no side effect.
+`newQueue` will create queue `name`.
+
+Return `false` if queue `name` exist.
+
 ```javascript
 this.smq.newQueue('broadcast');
 ```
 
-##### __getQueue(): string[]__
+##### delQueue(name: string): boolean
+
+`delQueue` will delete queue `name`.
+
+Return `false` if queue `name` does not exist.
+
+```javascript
+this.smq.delQueue('broadcast');
+```
+
+##### getQueue(): string[]
 
 `getQueue` will return all queue name in string array.
 ```javascript
 let q: string[] = this.smq.getQueue();
 ```
 
-##### __publish(name: string, msg: any, lazy = true): boolean__
+##### getSubscription(): string[]
 
-`publish` will put `msg` into queue `name`. If `msg` is undefined, return false.
+`getSubscription` will return all subscription id in string array.
+```javascript
+let ids: string[] = this.st.getSubscription();
+```
+
+##### publish(name: string, msg: any, lazy = true): boolean
+
+`publish` will put `msg` into queue `name`.
 
 If `lazy = true`(default), queue `name` will be created automatically if not exist yet.
 
-If `lazy = false`, and queue `name` does not exist, `publish` will return false.
+Return true if successful.
+
+Return false if any of following is true:
+- `lazy = false`, and queue `name` does not exist.
+- `name` is undefined.
+- `msg` is undefined.
+
 ```javascript
 // lazy mode
 message = 'This is a broadcast message';
 this.smq.publish('broadcast',message);
 ```
 
-##### __subscribe(name: string, callback: (any) => void, lazy = true): boolean__
+##### subscribe(name: string, callback: (any) => void, lazy = true): string
 
-`subscribe` will link `callback` function to queue `name`. Whenever queue `name` receive a new message, `callback` will be invoked. `subscibe` is usually setup in `ngOnInit()`. 
+`subscribe` will link `callback` function to queue `name`. Whenever queue `name` receive a new message, `callback` will be invoked. 
 
 If `lazy = true`(default), queue `name` will be created automatically if not exist yet.
 
-If `lazy = false`, and queue `name` does not exist, `subscribe` will return false.
+Return subscription id if successful.
+
+Return empty string if any of following is true:
+- `lazy = false`, and queue `name` does not exist.
+- `name` is undefined.
+- `callback` is undefined.
 
 Either use Lambda(fat arrow) in typescript to pass in callback or bind `this` to another variable in javascript, else `this` scope will be lost.
 
@@ -111,6 +146,18 @@ ngOnInit() {
 receiveBroadcast(m) {
 	this.broadcastMsg = m;
 }
+```
+
+##### unsubscribe(id: string): boolean
+
+`unsubscribe` will cancel subscription using `id`.
+
+`unsubscribe` will return false if `id` is undefined or `id` is not found in subscription list.
+
+```javascript
+id: string;
+
+this.st.unsubscribe(this.id);
 ```
 
 ## Example
@@ -132,7 +179,13 @@ receiveBroadcast(m) {
 * 0.2.0
 	- Complete Readme.md
 	- Fix index.js and index.d.ts
-
+* 0.2.1
+	- API change
+		- newQueue return boolean
+	- API new
+		- delQueue
+		- getSubscription
+		- unsubscribe
 
 ## License
 
