@@ -8,6 +8,9 @@
 		"email": "js@johnsiu.com",
 		"url": "https://johnsiu.com/"
 	},
+	"keywords": [
+		"angular2","ng2","component","message","queue"
+	],
 	"bugs": {
 		"url": "https://github.com/J-Siu/ng2-simple-mq/issues"
 	},
