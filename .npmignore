@@ -1,6 +1,7 @@
 examples
 node_modules
 src
+typings
 .gitignore
 .git
 .DS_Store

@@ -8,8 +8,6 @@ Name/ID(string) base API. RxJS object not exposed.
 
 ## Index
 
-<!-- TOC -->
-
 - [Install](#install)
 - [Usage](#usage)
 	- [Import into Angular 2 application (typescript)](#import-into-angular-2-application-typescript)
@@ -26,7 +24,6 @@ Name/ID(string) base API. RxJS object not exposed.
 - [Changelog](#changelog)
 - [License](#license)
 
-<!-- /TOC -->
 ## Install
 
 ```
@@ -39,28 +36,21 @@ npm install ng2-simple-mq
 
 ng2-simple-mq is implemented as Angular 2 injectable service name __SimpleMQ__.
 
-```javascript
-import {SimpleMQ} from 'ng2-simple-mq';
-```
-
-Add SimpleMQ into providers in your top level component (eg. [app.component.ts](https://github.com/J-Siu/ng2-simple-mq-example/blob/master/app/app.component.ts)).
-
-__Do not add to providers of child component!__
+Add SimpleMQ into providers in your top level module (eg. [app.component.ts](https://github.com/J-Siu/ng2-simple-mq-example/blob/master/app/app.module.ts)).
 
 ```javascript
-@Component({
-	'selector': 'app-component',
-	'template': `...`,
-	'providers': [SimpleMQ],
-	'directives': [
-		OneComponent,
-		TwoComponent]
+import { SimpleMQ } from 'ng2-simple-mq';
+
+@NgModule({
+	providers: [SimpleMQ]
 })
 ```
 
 For each child component require SimpleMQ, add to constructor.
 
 ```javascript
+import { SimpleMQ } from 'ng2-simple-mq';
+
 constructor(private smq: SimpleMQ) { }
 ```
 
@@ -169,7 +159,6 @@ this.st.unsubscribe(this.id);
 
 * John Sing Dao Siu (<john.sd.siu@gmail.com>)
 
-
 ## Changelog
 
 * 0.1.0-alpha - Initial
@@ -186,6 +175,8 @@ this.st.unsubscribe(this.id);
 		- delQueue
 		- getSubscription
 		- unsubscribe
+* 0.2.2
+	- Support Angular2 RC5
 
 ## License
 

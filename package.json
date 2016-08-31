@@ -9,11 +9,16 @@
     "url": "https://johnsiu.com/"
   },
   "keywords": [
+    "angular",
     "angular2",
+    "ng",
     "ng2",
+    "2",
     "component",
     "message",
-    "queue"
+    "queue",
+    "example",
+    "simple"
   ],
   "bugs": {
     "url": "https://github.com/J-Siu/ng2-simple-mq/issues"
@@ -23,7 +28,8 @@
     "url": "git+https://github.com/J-Siu/ng2-simple-mq.git"
   },
   "scripts": {
-    "build": "rm -rf lib && tsc -p src"
+    "build": "rm -rf lib && tsc",
+    "postinstall": "typings install"
   },
   "dependencies": {
     "node-uuid": "*"
@@ -36,6 +42,7 @@
   "devDependencies": {
     "@angular/core": "^2.0.0-rc.4",
     "rxjs": "5.0.0-beta.6",
-    "zone.js": "^0.6.6"
+    "zone.js": "^0.6.6",
+    "typings": "*"
   }
 }
