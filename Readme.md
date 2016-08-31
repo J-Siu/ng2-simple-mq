@@ -34,9 +34,11 @@ npm install ng2-simple-mq
 
 ### Import into Angular 2 application (typescript)
 
-ng2-simple-mq is implemented as Angular 2 injectable service name __SimpleMQ__.
+`ng2-simple-mq` is implemented as Angular 2 injectable service name __SimpleMQ__.
 
-Add SimpleMQ into providers in your top level module (eg. [app.component.ts](https://github.com/J-Siu/ng2-simple-mq-example/blob/master/app/app.module.ts)).
+__For module using SimpleMQ__
+
+Add `SimpleMQ` into module providers (eg. [app.module.ts](https://github.com/J-Siu/ng2-simple-mq-example/blob/master/app/app.module.ts)).
 
 ```javascript
 import { SimpleMQ } from 'ng2-simple-mq';
@@ -46,12 +48,16 @@ import { SimpleMQ } from 'ng2-simple-mq';
 })
 ```
 
-For each child component require SimpleMQ, add to constructor.
+__For each child component using SimpleMQ__
 
 ```javascript
 import { SimpleMQ } from 'ng2-simple-mq';
 
-constructor(private smq: SimpleMQ) { }
+export class ChildComponent {
+
+	constructor(private smq: SimpleMQ) { }
+
+}
 ```
 
 ### API
@@ -177,6 +183,8 @@ this.st.unsubscribe(this.id);
 		- unsubscribe
 * 0.2.2
 	- Support Angular2 RC5
+* 0.2.3
+	- Fix Readme.md
 
 ## License
 
