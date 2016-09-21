@@ -4,7 +4,7 @@ A simple message queue for Angular 2 inter-component communication base on RxJS.
 
 Name/ID(string) base API. RxJS object not exposed.
 
-(This pacakge does not communicate with RabbitMQ or any other message queue software/service.) 
+(This pacakge does not communicate with RabbitMQ or any other message queue software/service.)
 
 ## Index
 
@@ -117,7 +117,7 @@ this.smq.publish('broadcast',message);
 
 ##### subscribe(name: string, callback: (any) => void, lazy = true): string
 
-`subscribe` will link `callback` function to queue `name`. Whenever queue `name` receive a new message, `callback` will be invoked. 
+`subscribe` will link `callback` function to queue `name`. Whenever queue `name` receive a new message, `callback` will be invoked.
 
 If `lazy = true`(default), queue `name` will be created automatically if not exist yet.
 
@@ -185,6 +185,9 @@ this.st.unsubscribe(this.id);
 	- Support Angular2 RC5
 * 0.2.3
 	- Fix Readme.md
+* 1.2.4
+	- Support Angular 2.0.0
+	- Clean up package
 
 ## License
 

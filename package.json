@@ -29,20 +29,21 @@
   },
   "scripts": {
     "build": "rm -rf lib && tsc",
-    "postinstall": "typings install"
+    "typings": "typings install"
   },
   "dependencies": {
     "node-uuid": "*"
   },
   "peerDependencies": {
-    "@angular/core": "^2.0.0-rc.4",
-    "rxjs": "5.0.0-beta.6",
+    "@angular/core": "^2.0.0",
+    "rxjs": "5.0.0-beta.12",
     "zone.js": "^0.6.6"
   },
   "devDependencies": {
-    "@angular/core": "^2.0.0-rc.4",
-    "rxjs": "5.0.0-beta.6",
+    "@angular/core": "^2.0.0",
+    "rxjs": "5.0.0-beta.12",
     "zone.js": "^0.6.6",
+    "typescript": "*",
     "typings": "*"
   }
 }
