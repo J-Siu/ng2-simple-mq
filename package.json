@@ -27,22 +27,23 @@
     "url": "git+https://github.com/J-Siu/ng2-simple-mq.git"
   },
   "scripts": {
-    "build": "rm -rf lib && tsc",
-    "typings": "typings install"
+    "build": "rm -rf lib && tsc"
   },
   "dependencies": {
-    "node-uuid": "*"
+    "angular2-uuid": "*"
   },
   "peerDependencies": {
-    "@angular/core": "^2.0.0",
-    "rxjs": "5.0.0-beta.12",
-    "zone.js": "^0.6.6"
+    "@angular/core": "^2.4.1",
+    "rxjs": "5.0.1",
+    "core-js": "^2.4.1",
+    "zone.js": "^0.7.4"
   },
   "devDependencies": {
-    "@angular/core": "^2.0.0",
-    "rxjs": "5.0.0-beta.12",
-    "zone.js": "^0.6.6",
+    "@angular/core": "^2.4.1",
+    "rxjs": "5.0.1",
+    "core-js": "^2.4.1",
+    "zone.js": "^0.7.4",
     "typescript": "*",
-    "typings": "*"
+    "@types/node": "^6.0.46"
   }
 }

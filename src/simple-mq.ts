@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject, Subscription } from 'rxjs/Rx';
+import { UUID } from 'angular2-uuid';
 
 interface MQ {
 	[name: string]: {
@@ -17,8 +18,6 @@ interface SubscriptionList {
 
 @Injectable()
 export class SimpleMQ {
-
-	private uuid = require('node-uuid');
 
 	private mq: MQ = {};
 	private subscription: SubscriptionList = {};
@@ -75,7 +74,7 @@ export class SimpleMQ {
 		} else if (!this.mq[name]) {
 			return '';
 		}
-		let id = name + '-' + this.uuid.v1();
+		let id = name + '-' + UUID.UUID();
 		this.subscription[id] = {
 			name: name,
 			subscription: this.mq[name].observable.subscribe(callback)

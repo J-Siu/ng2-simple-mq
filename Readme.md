@@ -10,15 +10,16 @@ Name/ID(string) base API. RxJS object not exposed.
 
 - [Install](#install)
 - [Usage](#usage)
+	- ["noImplicitAny": false](#noimplicitany-false)
 	- [Import into Angular 2 application (typescript)](#import-into-angular-2-application-typescript)
 	- [API](#api)
-		- [newQueue](#newqueuename-string-boolean)
-		- [delQueue](#delqueuename-string-boolean)
-		- [getQueue](#getqueue-string)
-		- [getSubscription](#getsubscription-string)
-		- [publish](#publishname-string-msg-any-lazy-true-boolean)
-		- [subscribe](#subscribename-string-callback-any-void-lazy-true-string)
-		- [unsubscribe](#unsubscribeid-string-boolean)
+		- [newQueue(name: string): boolean](#newqueuename-string-boolean)
+		- [delQueue(name: string): boolean](#delqueuename-string-boolean)
+		- [getQueue(): string[]](#getqueue-string)
+		- [getSubscription(): string[]](#getsubscription-string)
+		- [publish(name: string, msg: any, lazy = true): boolean](#publishname-string-msg-any-lazy--true-boolean)
+		- [subscribe(name: string, callback: (any) => void, lazy = true): string](#subscribename-string-callback-any--void-lazy--true-string)
+		- [unsubscribe(id: string): boolean](#unsubscribeid-string-boolean)
 - [Example](#example)
 - [Contributors](#contributors)
 - [Changelog](#changelog)
@@ -31,6 +32,12 @@ npm install ng2-simple-mq
 ```
 
 ## Usage
+
+### "noImplicitAny": false
+
+Must set `"noImplicitAny": false` in application __tsconfig.json__. Else following error may occure at build time:
+
+    error TS7006: Parameter 'any' implicitly has an 'any' type
 
 ### Import into Angular 2 application (typescript)
 
@@ -186,16 +193,20 @@ Plunker: [Angular2 Simple MQ Example](http://embed.plnkr.co/e8Crbf/)
 * 0.2.3
 	- Fix Readme.md
 * 1.2.4
-	- Support Angular 2.0.0
+	- Support Angular2 ^2.0.0
 	- Clean up package
 * 1.2.5
 	- Add Plunker example
+* 1.2.6
+	- Support Angular2 ^2.4.1
+	- Replace node-uuid with angular2-uuid
+	- Add instruction for `"noImplicitAny": false`
 
 ## License
 
 The MIT License
 
-Copyright (c) 2016
+Copyright (c) 2017
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
