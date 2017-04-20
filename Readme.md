@@ -201,6 +201,11 @@ Plunker: [Angular2 Simple MQ Example](http://embed.plnkr.co/e8Crbf/)
 	- Support Angular2 ^2.4.1
 	- Replace node-uuid with angular2-uuid
 	- Add instruction for `"noImplicitAny": false`
+* 1.2.7
+	- Due to the rapid release cycle of Angular, to minimize
+		update purely due to `peerDependencies`,
+		it is modified as follow:
+		`"peerDependencies": { "@angular/core": ">2.4.1" }`
 
 ## License
 
