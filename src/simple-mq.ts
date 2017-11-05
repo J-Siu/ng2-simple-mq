@@ -38,7 +38,7 @@ export class SimpleMQ {
 		return true;
 	}
 	delQueue(name: string): boolean {
-		if (name === undefined || !this.mq['name']) {
+		if (name === undefined || !this.mq[name]) {
 			return false;
 		}
 		let s = this.getSubscription();

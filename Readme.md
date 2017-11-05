@@ -208,6 +208,8 @@ Plunker: [Angular2 Simple MQ Example](http://embed.plnkr.co/e8Crbf/)
 		`"peerDependencies": { "@angular/core": ">2.4.1" }`
 * 1.2.8
 	- Update to support Angular 4.3.1. Please use previous version for Angular 2.x.x.
+* 1.2.9
+	- Fix issue#2 `delQueue`
 
 ## License
 
