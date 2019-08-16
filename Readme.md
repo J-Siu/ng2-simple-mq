@@ -4,7 +4,13 @@ A simple message queue for Angular 2 inter-component communication base on RxJS.
 
 Name/ID(string) base API. RxJS object not exposed.
 
-(This pacakge does not communicate with RabbitMQ or any other message queue software/service.)
+(This package does not communicate with RabbitMQ or any other message queue software/service.)
+
+> To enable faster update, ng2-simple-mq switched to Angular CLI starting 8.2.0 and use new repository https://github.com/J-Siu/ng2-simple-mq-lib/
+>
+> Project contains both library and example.
+>
+> All version < 8.2.0 are in old repository https://github.com/J-Siu/ng2-simple-mq/
 
 ## Index
 
@@ -27,7 +33,7 @@ Name/ID(string) base API. RxJS object not exposed.
 
 ## Install
 
-```
+```sh
 npm install ng2-simple-mq
 ```
 
@@ -35,7 +41,7 @@ npm install ng2-simple-mq
 
 ### "noImplicitAny": false
 
-Must set `"noImplicitAny": false` in application __tsconfig.json__. Else following error may occure at build time:
+Must set `"noImplicitAny": false` in application __tsconfig.json__. Else following error may occur at build time:
 
     error TS7006: Parameter 'any' implicitly has an 'any' type
 
