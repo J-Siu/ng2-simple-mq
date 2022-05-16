@@ -1,10 +1,10 @@
-# ng2-simple-mq
+# Angular Simple MQ [![Paypal donate](https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif)](https://www.paypal.com/donate/?business=HZF49NM9D35SJ&no_recurring=0&currency_code=CAD)
 
-A simple message queue for Angular 2 inter-component communication base on RxJS.
+A simple message queue for Angular inter-component communication base on RxJS.
 
 Name/ID(string) base API. RxJS object not exposed.
 
-(This package does not communicate with RabbitMQ or any other message queue software/service.)
+(This package does not communicate with RabbitMQ nor any other message queue software/service.)
 
 > To enable faster update, ng2-simple-mq switched to Angular CLI starting 8.2.0 and use new repository https://github.com/J-Siu/ng2-simple-mq-lib/
 >
@@ -12,40 +12,43 @@ Name/ID(string) base API. RxJS object not exposed.
 >
 > All version < 8.2.0 are in old repository https://github.com/J-Siu/ng2-simple-mq/
 
-## Index
+### Table Of Content
+<!-- TOC -->
 
 - [Install](#install)
 - [Usage](#usage)
-	- ["noImplicitAny": false](#noimplicitany-false)
-	- [Import into Angular 2 application (typescript)](#import-into-angular-2-application-typescript)
-	- [API](#api)
-		- [newQueue(name: string): boolean](#newqueuename-string-boolean)
-		- [delQueue(name: string): boolean](#delqueuename-string-boolean)
-		- [getQueue(): string[]](#getqueue-string)
-		- [getSubscription(): string[]](#getsubscription-string)
-		- [publish(name: string, msg: any, lazy = true): boolean](#publishname-string-msg-any-lazy--true-boolean)
-		- [subscribe(name: string, callback: (any) => void, lazy = true): string](#subscribename-string-callback-any--void-lazy--true-string)
-		- [unsubscribe(id: string): boolean](#unsubscribeid-string-boolean)
+  - ["noImplicitAny": false](#noimplicitany-false)
+  - [Import into Angular 2 application typescript](#import-into-angular-2-application-typescript)
+  - [API](#api)
+      - [newQueuename: string: boolean](#newqueuename-string-boolean)
+      - [delQueuename: string: boolean](#delqueuename-string-boolean)
+      - [getQueue: string[]](#getqueue-string)
+      - [getSubscription: string[]](#getsubscription-string)
+      - [publishname: string, msg: any, lazy = true: boolean](#publishname-string-msg-any-lazy--true-boolean)
+      - [subscribename: string, callback: any => void, lazy = true: string](#subscribename-string-callback-any--void-lazy--true-string)
+      - [unsubscribeid: string: boolean](#unsubscribeid-string-boolean)
 - [Example](#example)
 - [Contributors](#contributors)
 - [Changelog](#changelog)
 - [License](#license)
 
-## Install
+<!-- /TOC -->
+
+### Install
 
 ```sh
 npm install ng2-simple-mq
 ```
 
-## Usage
+### Usage
 
-### "noImplicitAny": false
+#### "noImplicitAny": false
 
 Must set `"noImplicitAny": false` in application __tsconfig.json__. Else following error may occur at build time:
 
     error TS7006: Parameter 'any' implicitly has an 'any' type
 
-### Import into Angular 2 application (typescript)
+#### Import into Angular 2 application (typescript)
 
 `ng2-simple-mq` is implemented as Angular 2 injectable service name __SimpleMQ__.
 
@@ -73,9 +76,9 @@ export class ChildComponent {
 }
 ```
 
-### API
+#### API
 
-##### newQueue(name: string): boolean
+###### newQueue(name: string): boolean
 
 `newQueue` will create queue `name`.
 
@@ -85,7 +88,7 @@ Return `false` if queue `name` exist.
 this.smq.newQueue('broadcast');
 ```
 
-##### delQueue(name: string): boolean
+###### delQueue(name: string): boolean
 
 `delQueue` will delete queue `name`.
 
@@ -95,21 +98,21 @@ Return `false` if queue `name` does not exist.
 this.smq.delQueue('broadcast');
 ```
 
-##### getQueue(): string[]
+###### getQueue(): string[]
 
 `getQueue` will return all queue name in string array.
 ```javascript
 let q: string[] = this.smq.getQueue();
 ```
 
-##### getSubscription(): string[]
+###### getSubscription(): string[]
 
 `getSubscription` will return all subscription id in string array.
 ```javascript
 let ids: string[] = this.st.getSubscription();
 ```
 
-##### publish(name: string, msg: any, lazy = true): boolean
+###### publish(name: string, msg: any, lazy = true): boolean
 
 `publish` will put `msg` into queue `name`.
 
@@ -128,7 +131,7 @@ message = 'This is a broadcast message';
 this.smq.publish('broadcast',message);
 ```
 
-##### subscribe(name: string, callback: (any) => void, lazy = true): string
+###### subscribe(name: string, callback: (any) => void, lazy = true): string
 
 `subscribe` will link `callback` function to queue `name`. Whenever queue `name` receive a new message, `callback` will be invoked.
 
@@ -157,7 +160,7 @@ receiveBroadcast(m) {
 }
 ```
 
-##### unsubscribe(id: string): boolean
+###### unsubscribe(id: string): boolean
 
 `unsubscribe` will cancel subscription using `id`.
 
@@ -169,16 +172,16 @@ id: string;
 this.st.unsubscribe(this.id);
 ```
 
-## Example
+### Example
 
 Github: [ng2-simple-mq-example](https://github.com/J-Siu/ng2-simple-mq-example)
 Plunker: [Angular2 Simple MQ Example](http://embed.plnkr.co/e8Crbf/)
 
-## Contributors
+### Contributors
 
 * [John Sing Dao Siu](https://github.com/J-Siu)
 
-## Changelog
+### Changelog
 
 * 0.1.0-alpha - Initial
 * 0.1.1-alpha - Add Readme.md
@@ -217,7 +220,7 @@ Plunker: [Angular2 Simple MQ Example](http://embed.plnkr.co/e8Crbf/)
 * 1.2.9
 	- Fix issue#2 `delQueue`
 
-## License
+### License
 
 The MIT License
 
